@@ -1,0 +1,1 @@
+path('', views.tablero, name='tablero'),
