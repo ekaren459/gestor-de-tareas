@@ -1,10 +1,5 @@
-DATABASES = {
-    'default': {
-        'ENGINE':   'django.db.backends.postgresql',
-        'NAME':     'gestor_db',
-        'USER':     'postgres',
-        'PASSWORD': 'cantv',
-        'HOST':     'db',       # 'db' si usas docker-compose, 'localhost' si es local
-        'PORT':     '5432',
-    }
-}
+import os
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.dev')
+application = get_wsgi_application()

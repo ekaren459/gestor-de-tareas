@@ -1,0 +1,17 @@
+<div class="card" draggable="true" data-id="{{ card.id }}" data-col="{{ card.columna.id }}">
+  {% if card.etiqueta %}
+  <span class="card-tag" style="background:rgba(6,214,160,0.18);color:#06d6a0">{{ card.etiqueta }}</span>
+  {% endif %}
+  <div class="card-text">{{ card.texto|escape }}</div>
+  <div class="card-footer">
+    <div class="card-dates">
+      <span class="card-date">{{ card.creada|date:"d M" }}</span>
+      {% if card.fecha_limite %}
+      <span class="card-due">⏱ {{ card.fecha_limite|date:"d M" }}</span>
+      {% endif %}
+    </div>
+    <form hx-post="{% url 'projects:htmx_delete_tarjeta' card.id %}" hx-swap="delete" style="display:inline;">
+      <button class="card-delete" type="submit">✕</button>
+    </form>
+  </div>
+</div>

@@ -3,11 +3,25 @@ services:
     image: postgres:15
     environment:
       POSTGRES_DB: gestor_db
-      POSTGRES_PASSWORD: tupassword
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_USER: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    working_dir: /home/app
+    command: python3 Gestor-proyectos/manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
+    environment:
+      - POSTGRES_DB=gestor_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_HOST=db
+    volumes:
+      - ./:/home/app
     depends_on:
       - db
+
+volumes:
+  db_data:

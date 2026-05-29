@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gestor-proyectos"
+version = "0.1.0"
+description = "Mini Trello-style task and project manager"
+requires-python = ">=3.11"
+dependencies = [
+    "Django>=4.2,<5.0",
+    "djangorestframework>=3.15",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["apps*", "config*"]

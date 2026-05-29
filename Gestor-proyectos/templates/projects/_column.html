@@ -1,0 +1,22 @@
+<div class="column" data-id="{{ col.id }}">
+  <div class="col-header">
+    <div class="col-dot" style="background:{{ col.color }}"></div>
+    <input class="col-title" value="{{ col.titulo|escape }}" maxlength="40" spellcheck="false"/>
+    <span class="col-count">{{ col.tarjetas.count }}</span>
+    <button class="col-delete" title="Eliminar lista">✕</button>
+  </div>
+  <div class="cards" data-col="{{ col.id }}">
+    {% for card in col.tarjetas.all %}
+      {% include 'projects/_card.html' with card=card %}
+    {% endfor %}
+  </div>
+  <div class="add-card-area">
+    <form hx-post="{% url 'projects:htmx_create_tarjeta' %}" hx-swap="beforeend:.cards">
+      <input type="hidden" name="columna" value="{{ col.id }}" />
+      <div class="input-group">
+        <input name="texto" class="form-control" placeholder="Nueva tarjeta..." />
+        <button class="btn btn-success" type="submit">Agregar</button>
+      </div>
+    </form>
+  </div>
+</div>
