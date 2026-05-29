@@ -71,7 +71,4 @@ API endpoints (DRF):
 - `POST /api/tarjetas/`
 - `POST /api/tarjetas/reorder/` — para persistir orden. Enviar lista de objetos `{id, columna, orden}`
 
-Auditoría
-- Registros en modelo `AuditLog` por create/update/delete en `Columna` y `Tarjeta`.
 
-Si quieres que cree una imagen Docker lista para producción y un `Makefile` con comandos, lo hago a continuación.
